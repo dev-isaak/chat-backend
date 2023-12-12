@@ -1,10 +1,10 @@
-const express = require('express');
-const roomSchema = require('../models/room');
+const express = require("express");
+const roomSchema = require("../models/room");
 
 const router = express.Router();
 
 // get rooms
-router.get('/rooms', (req, res) => {
+router.get("/rooms", (req, res) => {
 	roomSchema
 		.find()
 		.then((data) => res.json(data))
@@ -12,7 +12,7 @@ router.get('/rooms', (req, res) => {
 });
 
 // create room
-router.post('/rooms', (req, res) => {
+router.post("/rooms", (req, res) => {
 	const chat = roomSchema(req.body);
 	chat
 		.save()

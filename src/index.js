@@ -1,30 +1,32 @@
-const express = require('express');
-const mongoose = require('mongoose');
-require('dotenv').config();
-const chatRoutes = require('./routes/chat');
-const roomRoutes = require('./routes/room');
+const express = require("express");
+const mongoose = require("mongoose");
+require("dotenv").config();
+const chatRoutes = require("./routes/chat");
+const roomRoutes = require("./routes/room");
+const cors = require("cors");
 
 const app = express();
 const port = process.env.PORT;
 
 // middlewares
 app.use(express.json()); //se usa para transformar las req a json
-app.use('/api', chatRoutes);
-app.use('/api', roomRoutes);
+app.use(cors()); // TODO - Disable cors
+app.use("/api", chatRoutes);
+app.use("/api", roomRoutes);
 
 // routes
-app.get('/', (req, res) => {
-	res.send('Welcome to home');
+app.get("/", (req, res) => {
+	res.send("Welcome to home");
 });
 
-app.get('/chat', (req, res) => {
-	res.send('Welcome to chat');
+app.get("/chat", (req, res) => {
+	res.send("Welcome to chat");
 });
 
 // mongodb connection
 mongoose
 	.connect(process.env.URI_MONGO)
-	.then(() => console.log('contected to db'))
-	.catch((e) => console.log('error: ', e));
+	.then(() => console.log("contected to db"))
+	.catch((e) => console.log("error: ", e));
 
-app.listen(port, () => console.log('server listening on port ', port));
+app.listen(port, () => console.log("server listening on port ", port));

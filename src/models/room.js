@@ -1,23 +1,25 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const roomSchema = mongoose.Schema({
-	name: {
+	room_name: {
 		type: String,
 		required: true,
 	},
 	description: {
 		type: String,
 	},
-	author: {
+	author_name: {
 		type: String,
 		required: true,
 	},
-	chats: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Chat', // Nombre del modelo de Chat en mongoose.model()
-		},
-	],
+	author_nickname: {
+		type: String,
+		required: false,
+	},
+	author_avatar: {
+		type: String,
+		required: false,
+	},
 });
 
-module.exports = mongoose.model('Room', roomSchema);
+module.exports = mongoose.model("Room", roomSchema);

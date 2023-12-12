@@ -1,13 +1,21 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const chatSchema = mongoose.Schema({
 	message: {
 		type: String,
 		required: true,
 	},
-	author: {
+	author_name: {
 		type: String,
 		required: true,
+	},
+	author_nickName: {
+		type: String,
+		required: false,
+	},
+	author_avatar: {
+		type: String,
+		required: false,
 	},
 	timeStamp: {
 		type: Date,
@@ -15,9 +23,9 @@ const chatSchema = mongoose.Schema({
 	},
 	room: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Room', // Nombre del modelo de Chat en mongoose.model()
+		ref: "Room", // Nombre del modelo de Chat en mongoose.model()
 		required: true,
 	},
 });
 
-module.exports = mongoose.model('Chat', chatSchema);
+module.exports = mongoose.model("Chat", chatSchema);
